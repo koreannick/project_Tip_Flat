@@ -66,6 +66,28 @@ const int braille[28]={
 
   **********************************/
 
+  /*********************************
+  {
+    0b001110, //온점(.)
+    0b000100, //콜론 (: ,1)
+    0b001000, //콜론 (: ,2)
+    0b000101, //세미콜론 (;, 1)
+    0b001010, //세미콜론 (;, 2)
+    0b111000, // 느낌표(!)
+    0b100001, // 빗금(/, 1)
+    0b101010, // 빗금(/, 2)
+    0b001000, // 반점(,)
+    0b001011, // 큰따옴표(", 1)
+    0b000111, // 큰따옴표(", 2)
+    0b001000, // 가운데점(.)
+    0b000001, // 작은따옴표(', 1)
+    0b001011, // 작은따옴표(', 2)
+    0b000111, // 작은따옴표(', 3)
+    0b000010, // 작은따옴표(', 4)
+    0b
+  }
+
+  **********************************/
 void setup() {
   //Serial 통신, Rx
   Serial.begin(9600);
@@ -85,13 +107,13 @@ void loop() {
 
     if(input_char >=97){
       output_char=input_char-97;
-        
+
       //output_char log
       Serial.println((int)output_char);
-  
+
       //Ascii => braille
       output_led=braille[(int)output_char];
-      
+
       for(int i=11; i>=6; i--){
        digitalWrite(ledpin[i],0);
       }
@@ -99,11 +121,11 @@ void loop() {
       output_char=input_char-65;
       //output_char log
       Serial.println((int)output_char);
-      
+
       //Ascii => braille
       capital_led=braille[27];
       output_led=braille[(int)output_char];
-      
+
       for(int i=11; i>=6; i--){
         //output log
        Serial.println(capital_led&0b000001);
